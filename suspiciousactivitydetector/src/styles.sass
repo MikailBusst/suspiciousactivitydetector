@@ -1,0 +1,157 @@
+$light-body: #FEFEFE
+$dark-body: black
+$light-link: #0767DB
+$light-link-hover: #033E85
+$dark-link-hover: #1c477c
+$dark-link: #3a81d6
+$light-sublist-font: #5C5C5C
+$dark-sublist-font: #B4B2B2
+$action-button-font: white
+$action-button-background: linear-gradient(to bottom, #008Af0, #1691EC)
+$action-button-hover: #5FA9DF
+$cancel-button: linear-gradient(to bottom, #E93030, #f03030)
+$cancel-button-hover: #E86969
+$input-border: #5F5F5F
+$input-border-focus: #0090D8
+
+
+*
+    padding: 1%
+
+body
+    background-color: $light-body
+
+@font-face 
+    font-family: 'Helvetica Neue Bold'  
+    src: url(assets/helveticaneue/HelveticaNeueBd.ttf)
+
+@font-face 
+    font-family: 'Helvetica Neue'
+    src: url(assets/helveticaneue/HelveticaNeueMed.ttf)
+
+@font-face 
+    font-family: 'Helvetica Neue Light'
+    src: url(assets/helveticaneue/HelveticaNeueThin.ttf)
+
+.DarkMode
+    background-color: $dark-body
+    color: white
+
+    a
+        color: $dark-link
+
+        :visited
+            color: $dark-link
+
+        :hover
+            color: $dark-link-hover
+
+    p
+        .sublist
+            color: $dark-sublist-font
+
+h1, h2, h3, h4, h5, h6
+    font-family: 'Helvetica Neue Bold', sans-serif
+
+h1
+    font-size: 50pt
+
+    .MobileH1
+        font-size: 30pt
+
+h2
+    font-size: 40pt
+
+    .MobileH2
+        font-size: 24pt
+
+h3
+    font-size: 30pt
+
+    .MobileH3
+        font-size: 18pt
+
+p, a
+    font-family: 'Helvetica Neue', sans-serif
+    font-size: 20pt
+
+    .LightText
+        font-family: 'Helvetica Neue Light', sans-serif
+
+    .FineText
+        font-size: 10pt
+
+a
+    color: $light-link
+    text-decoration: none
+
+    :visited
+        color: $light-link
+
+    :hover
+        color: $light-link-hover
+
+p
+    .sublist
+        font-size: 15pt
+        color: $light-sublist-font
+
+.paragraph
+    margin: 0px auto
+    text-align: left
+    width: 95%
+    line-height: 1.5
+
+button, input[type=submit] // This button will be used for action buttons
+    width: 200px
+    height: 48px
+    padding: 10px
+    cursor: pointer
+    font-size: 20px
+    border: 0px
+    color: $action-button-font
+    background: $action-button-background
+    border-radius: 10px
+
+    :hover
+        background: $action-button-hover
+
+button
+    .cancel
+        width: 200px
+        height: 48px
+        padding: 10px
+        font-size: 20px
+        background: $cancel-button
+
+        :hover
+            background: $cancel-button-hover
+
+input[type=reset]
+    width: 200px
+    height: 48px
+    padding: 10px
+    font-size: 20px
+    background: $cancel-button
+
+    :hover
+        background: $cancel-button-hover
+
+.text-button
+    position: relative
+    bottom: 6px
+
+input[type=text], input[type=email], input[type=password]
+    border: 1px solid $input-border
+    border-radius: 5px
+    font-family: 'Helvetica Neue', sans-serif
+    font-size: 10pt
+    padding: 10px
+    max-width: 90%
+
+    :focus
+        border: 1px solid $input-border-focus
+        outline-focus: $input-border-focus
+
+input[type=password]
+    min-width: 160px
