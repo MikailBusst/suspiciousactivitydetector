@@ -13,6 +13,7 @@ $cancel-button: linear-gradient(to bottom, #E93030, #f03030)
 $cancel-button-hover: #E86969
 $input-border: #5F5F5F
 $input-border-focus: #0090D8
+$error-text: #E71200
 
 
 *
@@ -96,6 +97,10 @@ p
         font-size: 15pt
         color: $light-sublist-font
 
+    &.errortext
+        color: $error-text
+        font-size: 15pt
+
 .paragraph
     margin: 0px auto
     text-align: left
@@ -155,3 +160,6 @@ input[type=text], input[type=email], input[type=password]
 
 input[type=password]
     min-width: 160px
+
+video
+    max-width: 98%

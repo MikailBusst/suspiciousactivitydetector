@@ -1,5 +1,10 @@
 <h1>Suspicious Activity Detector</h1>
 
+<p>Upload a video. <input type="file" name="video" accept=".webm, .mkv, .flv, .vob, .ogv, .ogg, drc, .gif, .gifv, .mng, .avi, .MTS, .M2TS, .TS, .mov, .qt, .wmv, .yuv, .rm, .rmvb, .viv, .asf, .amv, .mp4, .m4p, .m4v, .mpg, .mp2, .mpeg, .mpe, .mpv, .mpg, .mpeg, .m2v, .svi, .3gp, 3g2, .mxf, .roq, .nsv, .f4v, .f4p, .f4a, .f4b" (change)="onSelectFile($event)"></p>
+<p class="errortext" id="invalidfile"></p>
 
+<div class="videodisplay">
+  <video [src]="url" controls></video>
+</div>
 
 <router-outlet></router-outlet>
