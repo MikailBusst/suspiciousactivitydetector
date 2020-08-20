@@ -23,6 +23,8 @@ export class AppComponent {
   onSelectFile(event) {
     const file = event.target.files && event.target.files[0]
 
+    console.log(file)
+
     console.log(file.name)
 
     var file_extension = this.retrieve_filetype(file.name)
@@ -33,11 +35,23 @@ export class AppComponent {
       document.getElementById("invalidfile").innerHTML = ""
 
       if (file) {
-        var reader = new FileReader()
-        reader.readAsDataURL(file)
-  
-        reader.onload = (event) => {
-          this.url = (<FileReader>event.target).result
+        if (file.size <= 50000000) {
+          document.getElementById("invalidfile").innerHTML = ""
+
+          var rounded_size = Math.round(file.size / 1000000)
+
+          document.getElementById("videoname").innerHTML = file.name
+          document.getElementById("videosize").innerHTML = rounded_size.toString() + " MB"
+
+          var reader = new FileReader()
+          reader.readAsDataURL(file)
+    
+          reader.onload = (event) => {
+            this.url = (<FileReader>event.target).result
+          }
+        }
+        else {
+          document.getElementById('invalidfile').innerHTML = "The video file is more than 50MB"
         }
       }
     }

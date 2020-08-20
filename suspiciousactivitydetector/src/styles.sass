@@ -93,7 +93,7 @@ a
         color: $light-link-hover
 
 p
-    .sublist
+    &.sublist
         font-size: 15pt
         color: $light-sublist-font
 
@@ -161,5 +161,20 @@ input[type=text], input[type=email], input[type=password]
 input[type=password]
     min-width: 160px
 
-video
-    max-width: 98%
+.video 
+    .videodisplay
+        float: left
+        min-width: 45%
+        max-width: 45%
+
+    video
+        max-width: 100%
+
+    .videoinfo
+        display: inline-block
+        max-width: 45%
+        clear: both
+
+        #videosize
+            min-width: 100px
+            margin-top: -20px
