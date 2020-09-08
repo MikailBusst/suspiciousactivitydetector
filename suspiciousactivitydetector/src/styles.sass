@@ -14,13 +14,11 @@ $cancel-button-hover: #E86969
 $input-border: #5F5F5F
 $input-border-focus: #0090D8
 $error-text: #E71200
-
-
-*
-    padding: 1%
+$list-border-colour: #4B4B4B 
 
 body
     background-color: $light-body
+    overflow-x: hidden
 
 @font-face 
     font-family: 'Helvetica Neue Bold'  
@@ -56,6 +54,7 @@ h1, h2, h3, h4, h5, h6
 
 h1
     font-size: 50pt
+    margin-left: 3%
 
     .MobileH1
         font-size: 30pt
@@ -178,3 +177,59 @@ input[type=password]
         #videosize
             min-width: 100px
             margin-top: -20px
+
+.video-hidden
+    display: none
+
+.file_submission
+    color: transparent
+    outline: none
+
+
+.file_submission 
+    float: right
+    position: relative
+    right: 550px
+
+.file_submission
+    &::-webkit-file-upload-button
+        visibility: hidden
+
+
+.file_submission
+    &::before
+        content: 'Upload File'
+        width: 200px
+        height: 48px
+        padding: 10px
+        cursor: pointer
+        font-size: 15px
+        border: 0px
+        color: $action-button-font
+        background: $action-button-background
+        border-radius: 10px
+
+.file_submission
+    &:hover
+        &::before
+            background-color: #272727
+            cursor: pointer
+
+.activity-list
+    width: 80%
+    margin: 0px auto
+    clear: both
+    margin-top: 50px
+    
+    .list-item
+        border-top: 2px solid $list-border-colour
+
+        p
+            margin-top: 5px
+
+            &.sublist
+                margin-top: 5px
+                margin-bottom: 10px
+
+.activity-list-hidden
+    visibility: hidden
