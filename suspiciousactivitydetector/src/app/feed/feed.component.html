@@ -1,1 +1,13 @@
-<p>feed works!</p>
+<app-menu></app-menu>
+
+<h1>Camera Feed</h1>
+
+<button id="addfeed" (click)="openAddFeed()">Add Feed</button>
+
+<div id="feedselector">
+    <p><a class="feed-page" style="cursor: pointer;" (click)="activatefeed1()">1</a> <a style="cursor: pointer;" class="feed-page" (click)="activatefeed2()">2</a> <a style="cursor: pointer;" class="feed-page" (click)="activatefeed3()">3</a></p>
+</div>
+
+<app-cam1 *ngIf="cam1show"></app-cam1>
+<app-cam2 *ngIf="cam2show"></app-cam2>
+<app-cam3 *ngIf="cam3show"></app-cam3>

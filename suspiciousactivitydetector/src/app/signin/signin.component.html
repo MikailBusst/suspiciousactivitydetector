@@ -1,1 +1,23 @@
-<p>signin works!</p>
+<app-menu></app-menu>
+
+<h1>Sign In</h1>
+
+<a routerLink="/signup" style="margin-left: 42px">Create an account</a>
+
+<form #SignInForm="ngForm" (ngSubmit)="master_validate(SignInForm.value)"> 
+    <p>
+        Email <br>
+        <input type="email" name="Email" placeholder="Email" (blur)="validate_email(SignInForm.value)" ngModel>
+    </p>
+
+    <p>
+        Password <br>
+        <input type="password" name="Password" placeholder="Password" (blur)="validate_password(SignInForm.value)" ngModel>
+    </p>
+
+    <p class="errortext" id="signinerror"></p>
+
+    <p><a routerLink="/retrieve_email">Forgot Password</a></p>
+
+    <input type="submit" value="Sign In">
+</form>

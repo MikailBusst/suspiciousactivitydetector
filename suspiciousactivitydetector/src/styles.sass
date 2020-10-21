@@ -9,12 +9,13 @@ $dark-sublist-font: #B4B2B2
 $action-button-font: white
 $action-button-background: linear-gradient(to bottom, #008Af0, #1691EC)
 $action-button-hover: #5FA9DF
-$cancel-button: linear-gradient(to bottom, #E93030, #f03030)
+$cancel-button: #FF5151
 $cancel-button-hover: #E86969
 $input-border: #5F5F5F
 $input-border-focus: #0090D8
 $error-text: #E71200
-$list-border-colour: #4B4B4B 
+$list-border-colour: #4B4B4B
+$activity-info-colour: #E5E5E5   
 
 body
     background-color: $light-body
@@ -88,17 +89,25 @@ a
     :visited
         color: $light-link
 
-    :hover
+    &:hover
         color: $light-link-hover
+        cursor: pointer
+
+    &.feed-page
+        margin-right: 10px
+
+.dropdown-toggle::after
+    vetical-align: 0.125em !important
 
 p
     &.sublist
         font-size: 15pt
         color: $light-sublist-font
 
-    &.errortext
+    &.errortext, .errortext
         color: $error-text
         font-size: 15pt
+
 
 .paragraph
     margin: 0px auto
@@ -121,7 +130,7 @@ button, input[type=submit] // This button will be used for action buttons
         background: $action-button-hover
 
 button
-    .cancel
+    &.cancel
         width: 200px
         height: 48px
         padding: 10px
@@ -131,12 +140,22 @@ button
         :hover
             background: $cancel-button-hover
 
+    &#addfeed
+        float: right
+        margin-right: 20px
+
 input[type=reset]
     width: 200px
     height: 48px
     padding: 10px
     font-size: 20px
     background: $cancel-button
+    border-radius: 10px
+    border: none
+    margin-left: 10px
+    color: $action-button-font
+    cursor: pointer
+    box-shadow: none
 
     :hover
         background: $cancel-button-hover
@@ -149,9 +168,10 @@ input[type=text], input[type=email], input[type=password]
     border: 1px solid $input-border
     border-radius: 5px
     font-family: 'Helvetica Neue', sans-serif
-    font-size: 10pt
+    font-size: 12pt
     padding: 10px
     max-width: 90%
+    background-color: $light-body
 
     :focus
         border: 1px solid $input-border-focus
@@ -177,6 +197,14 @@ input[type=password]
         #videosize
             min-width: 100px
             margin-top: -20px
+
+    .activityinfo
+        width: 80%
+        text-align: center
+        padding-top: 20px
+        position: relative
+        top: 80px
+    
 
 .video-hidden
     display: none
@@ -233,3 +261,35 @@ input[type=password]
 
 .activity-list-hidden
     visibility: hidden
+
+#feedselector
+    text-align: center
+    clear: both
+    position: relative
+    top: 50px
+    margin-bottom: 100px
+
+select
+    &#custom-dropdown
+        -moz-appearance: none
+        -webkit-appearance: none
+        appearance: none
+        width: 100%
+        max-width: 300px
+        float: left
+        margin-right: 10px
+        height: 50px
+        outline: none
+        border: 3px solid black
+        font-weight: bold
+        font-size: 13pt
+        background: url(data:image/png;base64,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) no-repeat 100%
+        padding: 10px
+        border-radius: 10px
+        margin-bottom: 10px
+
+.dropdown-menu, .dropdown-menu-right
+    background-color: $light-body !important
+    border-width: 0px !important
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)

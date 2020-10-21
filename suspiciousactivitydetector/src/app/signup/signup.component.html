@@ -1,1 +1,34 @@
-<p>signup works!</p>
+<app-menu></app-menu>
+
+<h1>Sign Up</h1>
+
+<p style="margin-left: 42px;">Already have an account? <a routerLink="/signin">Sign in</a> instead.</p>
+
+<form #SignUpForm="ngForm" (ngSubmit)="master_validate(SignUpForm.value)">
+    <p>First Name <br>
+    <input name="FirstName" type="text" style="min-width: 200px" placeholder="First Name" (blur)="validate_FirstName(SignUpForm.value)" ngModel><br>
+    <span class="errortext" id="first_name"></span></p>
+
+    <p>Last Name <br>
+    <input name="LastName" type="text" style="min-width: 200px" placeholder="Last Name" (blur)="validate_LastName(SignUpForm.value)" ngModel><br>
+    <span class="errortext" id="last_name"></span></p>
+
+    <p>Email Address <br>
+    <input name="Email" type="email" style="min-width: 300px" placeholder="Email" (blur)="validate_Email(SignUpForm.value)" ngModel><br>
+    <span class="errortext" id="email"></span></p>
+
+    <p>Password <br>
+    <input name="Password" type="password" style="min-width: 300px;" placeholder="Password" (blur)="validate_Password(SignUpForm.value)" ngModel><br>
+    <span class="errortext" id="password"></span></p>
+
+    <p>Confirm Password <br>
+    <input name="ConfirmPassword" type="password" style="min-width: 300px;" placeholder="Confirm Password" (blur)="validate_ConfirmPassword(SignUpForm.value)" ngModel><br>
+    <span class="errortext" id="confirm_password"></span></p>
+
+    <div class="recaptcha">
+        <re-captcha (resolved)="resolved($event)" siteKey="6LfRu9UZAAAAALxc4NJNILc150PW0mAm-9i-3ifO"></re-captcha>
+    </div>
+    <p class="errortext" id="captcha" style="margin-top: 10px;"></p>
+
+    <input type="submit" ontouchstart="" value="Sign Up" style="margin-bottom: 50px;">
+</form>

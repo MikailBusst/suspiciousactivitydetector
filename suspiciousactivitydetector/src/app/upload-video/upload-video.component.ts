@@ -1,17 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-upload-video',
   templateUrl: './upload-video.component.html',
-  styleUrls: ['./upload-video.component.sass']
+  styleUrls: ['./upload-video.component.sass'],
 })
 export class UploadVideoComponent implements OnInit {
 
   url = null
+  UserID
 
-  constructor() { }
+  constructor(public dialog: MatDialog, private databaseService:DatabaseService) { }
 
   ngOnInit(): void {
+    this.UserID = localStorage.getItem("id")
+
+    console.log(this.UserID)
+
+    if(this.UserID == null || this.UserID == "0") {
+      this.UserID = 0
+    }
+
+    //console.log(this.UserID)
+  }
+
+  selectFiletype(): void {
+    const openFiletypeDialog = this.dialog.open(SelectFiletypeDialogComponent)
+
+    openFiletypeDialog.afterClosed().subscribe(result => {
+      console.log('Dialog result: ${result}')
+    })
   }
 
   retrieve_filetype(file_name): string {
@@ -71,4 +91,12 @@ export class UploadVideoComponent implements OnInit {
     }
   }
 
+}
+
+@Component({
+  selector: 'select-filetype-dialog',
+  templateUrl: '../select-filetype-dialog/select-filetype-dialog.component.html',
+})
+export class SelectFiletypeDialogComponent {
+  constructor(public dialog: MatDialog) {}
 }

@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.sass"
             ],
             "scripts": [
@@ -126,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "suspiciousactivitydetector"
+    }
+  },
+  "defaultProject": "suspiciousactivitydetector",
+  "cli": {
+    "analytics": "884524e6-c9b4-47e0-b0be-e7cc23995054"
+  }
 }
