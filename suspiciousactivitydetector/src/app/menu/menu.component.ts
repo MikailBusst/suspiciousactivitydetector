@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {    
     this.UserID = localStorage.getItem("id")
 
-    var firstname, lastname, name
+    var name
 
     if(this.UserID != 0 && this.UserID != null){
       this.databaseService.GetUserStatus(this.UserID).subscribe(
@@ -35,11 +35,11 @@ export class MenuComponent implements OnInit {
       )
       this.databaseService.GetUserName(this.UserID).subscribe(
         res=>{
-          firstname = res.FirstName
-          lastname = res.LastName
-          name = firstname + " " + lastname
+          console.log(res)
+          name = res
+          console.log(name)
 
-          document.getElementById("name").innerHTML = name
+          document.getElementById("name").innerHTML = res
         },
         err=>{
           console.log(err)
