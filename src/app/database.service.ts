@@ -9,7 +9,7 @@ import { Form } from '@angular/forms';
 export class DatabaseService {
 
   //MasterLink = 'http://localhost:8080/SuspiciousActivityDetector/'
-  MasterLink = 'https://sad-backend-app.herokuapp.com/'
+  MasterLink = 'https://sad-backend-app.herokuapp.com'
 
   constructor(private http:HttpClient) { }
 
@@ -22,11 +22,11 @@ export class DatabaseService {
     formData.append('password', data.Password)
     formData.append('status', '0')
 
-    return this.http.post<any>(this.MasterLink + 'add_user.php', formData)
+    return this.http.post<any>(this.MasterLink + '/add_user.php', formData)
   }
 
   GetUserID():Observable<any> {
-    return this.http.get(this.MasterLink + 'get_user_id.php')
+    return this.http.get(this.MasterLink + '/get_user_id.php')
   }
 
   Login(data): Observable<any> {
@@ -35,7 +35,7 @@ export class DatabaseService {
     formData.append('email', data.Email)
     formData.append('password', data.Password)
 
-    return this.http.post<any>(this.MasterLink + 'login.php', formData)
+    return this.http.post<any>(this.MasterLink + '/login.php', formData)
   }
 
   GetUserStatus(ID): Observable<any> {
@@ -43,7 +43,7 @@ export class DatabaseService {
 
     formData.append('id', ID)
 
-    return this.http.post<any>(this.MasterLink + 'get_user_status.php', formData)
+    return this.http.post<any>(this.MasterLink + '/get_user_status.php', formData)
   }
 
   GetUserName(ID): Observable<any> {
@@ -51,6 +51,6 @@ export class DatabaseService {
 
     formData.append('id', ID)
 
-    return this.http.post<any>(this.MasterLink + 'get_user_name.php', formData)
+    return this.http.post<any>(this.MasterLink + '/get_user_name.php', formData)
   }
 }
