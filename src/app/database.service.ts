@@ -9,7 +9,7 @@ import { Form } from '@angular/forms';
 export class DatabaseService {
 
   //MasterLink = 'http://localhost:8080/SuspiciousActivityDetector/'
-  MasterLink = 'https://sad-backend-app.herokuapp.com'
+  MasterLink = 'https://sad-backend-app.herokuapp.com/'
 
   constructor(private http:HttpClient) { }
 
