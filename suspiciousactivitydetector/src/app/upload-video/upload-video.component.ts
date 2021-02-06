@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DatabaseService } from '../database.service';
+import { ActivityDetectorService } from '../activity-detector.service';  
 
 @Component({
   selector: 'app-upload-video',
@@ -11,8 +12,9 @@ export class UploadVideoComponent implements OnInit {
 
   url = null
   UserID
+  fileToUpload: File = null
 
-  constructor(public dialog: MatDialog, private databaseService:DatabaseService) { }
+  constructor(public dialog: MatDialog, private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
 
   ngOnInit(): void {
     this.UserID = localStorage.getItem("id")
@@ -65,10 +67,6 @@ export class UploadVideoComponent implements OnInit {
           $("#video").removeClass("video-hidden")
           $("#video").addClass("video")
 
-          $("#activity-list").removeClass("activity-list-hidden")
-          $("#activity-list").addClass("activity-list")
-
-
           var rounded_size = Math.round(file.size / 1000000)
 
           document.getElementById("videoname").innerHTML = file.name
@@ -80,6 +78,17 @@ export class UploadVideoComponent implements OnInit {
           reader.onload = (event) => {
             this.url = (<FileReader>event.target).result
           }
+
+          //this.fileToUpload = file.item(0)
+
+          this.ads.UploadVideo(file).subscribe(
+            res=>{
+              console.log(res)
+            },
+            err=>{
+              console.log("Connection failed!")
+            }
+          )
         }
         else {
           document.getElementById('invalidfile').innerHTML = "The video file is more than 50MB"

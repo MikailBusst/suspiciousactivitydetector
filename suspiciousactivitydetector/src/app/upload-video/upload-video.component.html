@@ -1,12 +1,11 @@
 <app-menu></app-menu>
 <h1>Upload Video</h1>
 
-<p style="margin-left: 3%;">Upload a video (50 MB max)
+<p style="margin-left: 3%; float: left;">Upload a video (50 MB max)</p>
   <label for="videoupload" class="file_submission_label file_submission">
     Upload Video
   </label> 
   <input type="file" style="display: none;" id="videoupload" name="video" accept=".webm, .mkv, .flv, .vob, .ogv, .ogg, drc, .gif, .gifv, .mng, .avi, .MTS, .M2TS, .TS, .mov, .qt, .wmv, .yuv, .rm, .rmvb, .viv, .asf, .amv, .mp4, .m4p, .m4v, .mpg, .mp2, .mpeg, .mpe, .mpv, .mpg, .mpeg, .m2v, .svi, .3gp, 3g2, .mxf, .roq, .nsv, .f4v, .f4p, .f4a, .f4b" (change)="onSelectFile($event)">
-</p>
 <p class="errortext" id="invalidfile"></p>
 
 <div id="video" class="video-hidden">
@@ -19,21 +18,4 @@
     <p id="videosize" class="sublist"></p>
   </div>
 </div>
-
-<div id="activity-list" class="activity-list-hidden">
-  <button (click)="selectFiletype()">Save Activities</button>
-  <div class="list-item">
-    <p>9 people detected</p>
-    <p class="sublist">2:00 - 2:10</p>
-  </div>
-  <div class="list-item">
-    <p>Agressive behaviour detected</p>
-    <p class="sublist">2:30 - 3:14</p>
-  </div>
-  <div class="list-item">
-    <p>2 people fighting</p>
-    <p class="sublist">3:15 - 4:10</p>
-  </div>
-</div>
-
 <router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
+import { ActivityDetectorService } from '../activity-detector.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,12 +12,21 @@ export class MenuComponent implements OnInit {
   UserStatus
   AdminStatus
 
-  constructor(private databaseService:DatabaseService) { }
+  constructor(private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
 
   ngOnInit(): void {    
     this.UserID = localStorage.getItem("id")
 
     var name
+
+    /*this.ads.TestBackend().subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log("Connection failed!")
+      }
+    )*/
 
     if(this.UserID != 0 && this.UserID != null){
       this.databaseService.GetUserStatus(this.UserID).subscribe(

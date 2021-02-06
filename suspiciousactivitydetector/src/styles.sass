@@ -213,12 +213,6 @@ input[type=password]
     color: transparent
     outline: none
 
-
-.file_submission 
-    float: right
-    position: relative
-    right: 550px
-
 .file_submission
     &::-webkit-file-upload-button
         visibility: hidden
@@ -226,22 +220,21 @@ input[type=password]
 
 .file_submission
     &::before
-        content: 'Upload File'
+        content: 'Upload Video'
+        font-family: 'Helvetica Neue', sans-serif
+        position: relative
+        top: 37px
         width: 200px
         height: 48px
         padding: 10px
-        cursor: pointer
         font-size: 15px
         border: 0px
         color: $action-button-font
         background: $action-button-background
         border-radius: 10px
 
-.file_submission
-    &:hover
-        &::before
-            background-color: #272727
-            cursor: pointer
+        &:hover
+            cursor: pointer !important
 
 .activity-list
     width: 80%

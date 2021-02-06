@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './database.service';
 import { EmailExistsDialogComponent } from './email-exists-dialog/email-exists-dialog.component';
 import { UserIdComponent } from './user-id/user-id.component';
+import { ActivityDetectorService } from './activity-detector.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { UserIdComponent } from './user-id/user-id.component';
   ],
   providers: [
     DatabaseService,
-    UserIdComponent
+    UserIdComponent,
+    ActivityDetectorService
   ],
 
   entryComponents: [
