@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ActivityDetectorService {
 
-  MasterLink = 'http://127.0.0.1:5000'
+  //MasterLink = 'http://127.0.0.1:5000'
+  MasterLink = 'https://sad-flask-app.herokuapp.com/'
 
   constructor(private http:HttpClient) { }
 
