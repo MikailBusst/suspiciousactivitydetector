@@ -1,21 +1,36 @@
 <app-menu></app-menu>
 <h1>Upload Video</h1>
 
-<p style="margin-left: 3%; float: left;">Upload a video (50 MB max)</p>
-  <label for="videoupload" class="file_submission_label file_submission">
-    Upload Video
-  </label> 
-  <input type="file" style="display: none;" id="videoupload" name="video" accept=".webm, .mkv, .flv, .vob, .ogv, .ogg, drc, .gif, .gifv, .mng, .avi, .MTS, .M2TS, .TS, .mov, .qt, .wmv, .yuv, .rm, .rmvb, .viv, .asf, .amv, .mp4, .m4p, .m4v, .mpg, .mp2, .mpeg, .mpe, .mpv, .mpg, .mpeg, .m2v, .svi, .3gp, 3g2, .mxf, .roq, .nsv, .f4v, .f4p, .f4a, .f4b" (change)="onSelectFile($event)">
-<p class="errortext" id="invalidfile"></p>
-
-<div id="video" class="video-hidden">
-  <div class="videodisplay">
-    <video [src]="url" controls></video>
-  </div>
-
-  <div class="videoinfo">
-    <p id="videoname" style="margin-top: 0px;"></p>
-    <p id="videosize" class="sublist"></p>
-  </div>
+<div class="video_upload">
+  <p style="margin-left: 3%; float: left;">Upload a video (50 MB max)</p>
+    <label for="videoupload" class="file_submission_label file_submission">
+      Upload Video
+    </label> 
+    <input type="file" style="display: none;" id="videoupload" name="video" accept=".webm, .mp4" (change)="onSelectFile($event)">
+  <p class="errortext" id="invalidfile"></p>
 </div>
+
+<div class="videoinfo-hidden videoinfo">
+  <p id="videoname" style="margin-top: 0px;"></p>
+  <p id="videosize" class="sublist"></p>
+  <div class="loader"></div>
+</div>
+
+<div class="activitylist activitylist-hidden">
+  <div class="activitylistitem">
+    <p>Fighting</p>
+    <p>1:00 - 1:30</p>
+  </div>
+  <div class="activitylistitem">
+    <p>Fighting</p>
+    <p>1:00 - 1:30</p>
+  </div>
+  <div class="activitylistitem">
+    <p>Fighting</p>
+    <p>1:00 - 1:30</p>
+  </div>
+
+  <button>Download Activity</button>
+</div>
+
 <router-outlet></router-outlet>

@@ -49,28 +49,48 @@ export class UploadVideoComponent implements OnInit {
   onSelectFile(event) {
     const file = event.target.files && event.target.files[0]
 
-    console.log(file)
-
-    console.log(file.name)
-
     var file_extension = this.retrieve_filetype(file.name)
 
-    console.log(file_extension)
+    //console.log(file_extension)
 
-    if(file_extension == "webm" || file_extension == "mkv" || file_extension == "flv" || file_extension == "vob" || file_extension == "ogv" || file_extension == "ogg" || file_extension == "drc" || file_extension == "gif" || file_extension == "gifv" || file_extension == "mng" || file_extension == "avi" || file_extension == "MTS" || file_extension == "mts" || file_extension == "M2TS" || file_extension == "m2ts" || file_extension == "TS" || file_extension == "ts" || file_extension == "mov" || file_extension == "qt" || file_extension == "wmv" || file_extension == "yuv" || file_extension == "rm" || file_extension == "rmvb" || file_extension == "viv" || file_extension == "asf" || file_extension == "amv" || file_extension == "mp4" || file_extension == "m4p" || file_extension == "m4v" || file_extension == "mpg" || file_extension == "mp2" || file_extension == "mpeg" || file_extension == "mpe" || file_extension == "mpv" || file_extension == "mpg" || file_extension == "mpeg" || file_extension == "m2v" || file_extension == "svi" || file_extension == "3gp" || file_extension == "3g2" || file_extension == "mxf" || file_extension == "roq" || file_extension == "nsv" || file_extension == "f4v" || file_extension == "f4p" || file_extension == "f4a" || file_extension == "f4b") {
+    if(file_extension == "webm" || file_extension == "mp4") {
       document.getElementById("invalidfile").innerHTML = ""
 
       if (file) {
         if (file.size <= 50000000) {
           document.getElementById("invalidfile").innerHTML = ""
 
-          $("#video").removeClass("video-hidden")
-          $("#video").addClass("video")
+          $(".videoinfo").removeClass("videoinfo-hidden")
+          $(".videoinfo").addClass("videoinfo-show")
 
-          var rounded_size = Math.round(file.size / 1000000)
+          //$(".activitylist").removeClass("activitylist-hidden")
+          //$(".activitylist").addClass("activitylist-show")
 
-          document.getElementById("videoname").innerHTML = file.name
-          document.getElementById("videosize").innerHTML = rounded_size.toString() + " MB"
+          var rounded_size = 0
+          var filesize_unit = ''
+
+          if(file.size < 1000000) {
+            rounded_size = Math.round(file.size / 1000)
+            filesize_unit = 'KB'
+          }
+          else{
+            rounded_size = Math.round(file.size / 1000000)
+            filesize_unit = 'MB'
+          }
+
+          //console.log(file.name.length)
+
+          var filename_display = ''
+
+          if(file.name.length > 13) {
+            filename_display = file.name.substring(0,9) + '...' + file_extension
+          }
+          else {
+            filename_display = file.name
+          }
+
+          document.getElementById("videoname").innerHTML = filename_display
+          document.getElementById("videosize").innerHTML = rounded_size.toString() + " " + filesize_unit
 
           var reader = new FileReader()
           reader.readAsDataURL(file)
