@@ -13,6 +13,11 @@ export class UploadVideoComponent implements OnInit {
   url = null
   UserID
   fileToUpload: File = null
+  activity_JSON = null
+  frame_array = []
+  activity_array = []
+  num_activities = 0
+
 
   constructor(public dialog: MatDialog, private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
 
@@ -48,6 +53,10 @@ export class UploadVideoComponent implements OnInit {
 
   onSelectFile(event) {
     const file = event.target.files && event.target.files[0]
+
+    var activity_JSON = null
+    var frame_array = []
+    var activity_array = []
 
     var file_extension = this.retrieve_filetype(file.name)
 
@@ -103,12 +112,25 @@ export class UploadVideoComponent implements OnInit {
 
           this.ads.UploadVideo(file).subscribe(
             res=>{
-              console.log(res)
+              //console.log(res)
+              this.getActivity(res)
             },
             err=>{
               console.log("Connection failed!")
             }
           )
+
+          //activity_JSON = {"15": "Not Fighting", "30": "No person detected", "45": "Not Fighting", "60": "", "75": "Not Fighting", "90": "Not Fighting", "105": "No person detected", "120": "", "135": "Not Fighting", "150": "No person detected"}
+
+          //this.getActivity(activity_JSON)
+          
+          /*for(var i = 0; i < Object.keys(activity_JSON).length; i++) {
+            frame_array.push(activity_JSON[i][0])
+            activity_array.push(activity_JSON[i][1])
+          }
+
+          console.log(frame_array)
+          console.log(activity_array)*/
         }
         else {
           document.getElementById('invalidfile').innerHTML = "The video file is more than 50MB"
@@ -118,6 +140,24 @@ export class UploadVideoComponent implements OnInit {
     else {
       document.getElementById("invalidfile").innerHTML = "Invalid file"
     }
+  }
+
+  getActivity(activity_JSON) {
+    for(var i = 0; i < Object.keys(activity_JSON).length; i++) {
+      //console.log(activity_JSON)
+      var activity = Object.keys(activity_JSON).map((key) => [Number(key), activity_JSON[key]])
+
+      //console.log(activity[1][1])
+
+      this.frame_array.push(activity[i][0])
+      this.activity_array.push(activity[i][1])
+    }
+
+    $(".loader").removeClass("loader-show")
+    $(".loader").addClass("loader-hidden")
+
+    $(".activitylist").removeClass("activitylist-hidden")
+    $(".activitylist").addClass("activitylist-show")
   }
 
 }

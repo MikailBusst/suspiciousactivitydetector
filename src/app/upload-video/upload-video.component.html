@@ -11,26 +11,18 @@
 </div>
 
 <div class="videoinfo-hidden videoinfo">
-  <p id="videoname" style="margin-top: 0px;"></p>
-  <p id="videosize" class="sublist"></p>
-  <div class="loader"></div>
+  <p id="videoname" style="margin-top: 0px;">Test</p>
+  <p id="videosize" class="sublist">Test</p>
+  <div class="loader loader-show"></div>
 </div>
 
 <div class="activitylist activitylist-hidden">
-  <div class="activitylistitem">
-    <p>Fighting</p>
-    <p>1:00 - 1:30</p>
-  </div>
-  <div class="activitylistitem">
-    <p>Fighting</p>
-    <p>1:00 - 1:30</p>
-  </div>
-  <div class="activitylistitem">
-    <p>Fighting</p>
-    <p>1:00 - 1:30</p>
+  <div class="activitylistitem" *ngFor="let a of frame_array; let index = index">
+    <p style="margin-bottom: 10px" class="sublist">{{ frame_array[index] }}</p>
+    <p style="margin-top: 0px">{{ activity_array[index] }}</p>
   </div>
 
-  <button>Download Activity</button>
+  <!--<button>Download Activity</button>-->
 </div>
 
 <router-outlet></router-outlet>
