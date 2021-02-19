@@ -53,4 +53,39 @@ export class DatabaseService {
 
     return this.http.post<any>(this.MasterLink + 'get_user_name.php', formData)
   }
+
+  ForgotPassword(data): Observable<any> {
+    const formData: FormData = new FormData()
+
+    console.log(data.Email)
+
+    formData.append('email', data.Email)
+
+    return this.http.post<any>(this.MasterLink + 'forgotpassword.php', formData)
+  }
+
+  GetResetPasswordCode(code): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append('code', code)
+
+    return this.http.post<any>(this.MasterLink + 'check_code.php', formData)
+  }
+
+  DeleteResetPasswordCode(code): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append('code', code)
+
+    return this.http.post<any>(this.MasterLink + 'delete_code.php', formData)
+  }
+
+  UpdatePassword(data, user_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append('password', data.password)
+    formData.append('user_id', user_id)
+
+    return this.http.post<any>(this.MasterLink + 'update_password.php', formData)
+  }
 }

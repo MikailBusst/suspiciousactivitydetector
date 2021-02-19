@@ -147,7 +147,9 @@ export class UploadVideoComponent implements OnInit {
       //console.log(activity_JSON)
       var activity = Object.keys(activity_JSON).map((key) => [Number(key), activity_JSON[key]])
 
-      //console.log(activity[1][1])
+      if(activity[i][1] == "") {
+        continue
+      }
 
       this.frame_array.push(activity[i][0])
       this.activity_array.push(activity[i][1])

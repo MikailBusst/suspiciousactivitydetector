@@ -5,10 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
-import { FeedComponent } from './feed/feed.component';
-import { Cam1Component } from './cam1/cam1.component';
-import { Cam2Component } from './cam2/cam2.component';
-import { Cam3Component } from './cam3/cam3.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RetrieveEmailComponent } from './retrieve-email/retrieve-email.component';
@@ -17,7 +13,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeletionDialogComponent } from './confirm-deletion-dialog/confirm-deletion-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectFiletypeDialogComponent } from './select-filetype-dialog/select-filetype-dialog.component';
-import { AddFeedDialogComponent } from './add-feed-dialog/add-feed-dialog.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
@@ -26,26 +21,25 @@ import { DatabaseService } from './database.service';
 import { EmailExistsDialogComponent } from './email-exists-dialog/email-exists-dialog.component';
 import { UserIdComponent } from './user-id/user-id.component';
 import { ActivityDetectorService } from './activity-detector.service';
+import { EmailsentComponent } from './emailsent/emailsent.component';
+import { SelectreportComponent } from './selectreport/selectreport.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     UploadVideoComponent,
-    FeedComponent,
-    Cam1Component,
-    Cam2Component,
-    Cam3Component,
     SigninComponent,
     SignupComponent,
     RetrieveEmailComponent,
     ResetPasswordComponent,
     ConfirmDeletionDialogComponent,
     SelectFiletypeDialogComponent,
-    AddFeedDialogComponent,
     AdminDashboardComponent,
     EmailExistsDialogComponent,
-    UserIdComponent
+    UserIdComponent,
+    EmailsentComponent,
+    SelectreportComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +50,6 @@ import { ActivityDetectorService } from './activity-detector.service';
     RecaptchaModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {
-        path: 'camera_feed',
-        component: FeedComponent
-      },
       {
         path: 'admin_dashboard',
         component: AdminDashboardComponent
@@ -79,6 +69,14 @@ import { ActivityDetectorService } from './activity-detector.service';
       {
         path: 'signup',
         component: SignupComponent
+      },
+      {
+        path: 'selectreport',
+        component: SelectreportComponent
+      },
+      {
+        path: 'emailsent',
+        component: EmailsentComponent
       },
       {
         path: '',

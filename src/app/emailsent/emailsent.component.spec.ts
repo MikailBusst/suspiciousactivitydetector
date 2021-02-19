@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddFeedDialogComponent } from './add-feed-dialog.component';
+import { EmailsentComponent } from './emailsent.component';
 
-describe('AddFeedDialogComponent', () => {
-  let component: AddFeedDialogComponent;
-  let fixture: ComponentFixture<AddFeedDialogComponent>;
+describe('EmailsentComponent', () => {
+  let component: EmailsentComponent;
+  let fixture: ComponentFixture<EmailsentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddFeedDialogComponent ]
+      declarations: [ EmailsentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddFeedDialogComponent);
+    fixture = TestBed.createComponent(EmailsentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

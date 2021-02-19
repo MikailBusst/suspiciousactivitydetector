@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
 
     var name
 
-    /*this.ads.TestBackend().subscribe(
+    /*this.ads.testGoogleBackend().subscribe(
       res=>{
         console.log(res)
       },

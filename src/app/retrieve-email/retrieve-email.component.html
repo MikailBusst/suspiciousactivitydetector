@@ -3,11 +3,11 @@
 
 <h3>Enter your email</h3>
 
-<form>
+<form #ForgotPasswordForm="ngForm" (ngSubmit)="validate_Email(ForgotPasswordForm.value)">
     <p>Email Address <br>
-    <input type="email" placeholder="Email">
-    </p>
+    <input name="Email" type="email" placeholder="Email" ngModel><br>
+    <span class="errortext" id="email"></span></p>
 
-    <input type="submit" value="Send Code" routerLink="/reset_password">
+    <input type="submit" value="Send Code">
     <input type="reset" value="Cancel">
 </form>

@@ -6,8 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ActivityDetectorService {
 
-  //MasterLink = 'http://127.0.0.1:5000'
-  MasterLink = 'https://adsbackend.et.r.appspot.com/'
+  MasterLink = 'http://127.0.0.1:5000'
+  //MasterLink = 'https://adsbackend.et.r.appspot.com/'
+  //MasterLink = 'https://adsbackend-bglcdbk5sa-as.a.run.app'
+  //MasterLink = 'http://121.123.49.31'
 
   constructor(private http:HttpClient) { }
 
@@ -17,5 +19,4 @@ export class ActivityDetectorService {
     formData.append('file', videodata, videodata.name)
     return this.http.post<any>(this.MasterLink, formData)
   }
-
 }
