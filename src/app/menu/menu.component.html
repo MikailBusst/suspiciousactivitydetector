@@ -12,6 +12,9 @@
           <li class="nav-item">
             <a class="nav-link" id="student_table" routerLink="/admin_dashboard" *ngIf="AdminStatus">Admin Dashboard</a>
           </li>
+          <li class="nav-item" *ngIf="UserID != 0 && UserID != null">
+            <a class="nav-link" id="student_table" routerLink="/selectreport">Activity Reports</a>
+        </li>
           <li class="nav-item" *ngIf="UserID == 0 || UserID == null">
               <a class="nav-link" id="registration" routerLink="/signin">Sign In</a>
           </li>

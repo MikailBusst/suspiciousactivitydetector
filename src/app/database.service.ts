@@ -88,4 +88,21 @@ export class DatabaseService {
 
     return this.http.post<any>(this.MasterLink + 'update_password.php', formData)
   }
+
+  AddActivityReport(video_name, user_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("video_name", video_name)
+    formData.append("user_id", user_id)
+
+    return this.http.post<any>(this.MasterLink + 'add_activity_report.php', formData)
+  }
+
+  GetActivityReports(user_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+
+    return this.http.post<any>(this.MasterLink + 'get_activity_report.php', formData)
+  }
 }

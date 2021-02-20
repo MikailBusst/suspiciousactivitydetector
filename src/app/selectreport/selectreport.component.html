@@ -1,1 +1,8 @@
-<p>selectreport works!</p>
+<app-menu></app-menu>
+
+<h1>Saved Activity Reports</h1>
+
+<div class="activitylistitem" *ngFor="let a of Report_Time; let index = index">
+    <p style="margin-bottom: 10px" class="sublist">{{ Report_Time[index] }}</p>
+    <p style="margin-top: 0px">{{ Report_Video[index] }}</p>
+</div>

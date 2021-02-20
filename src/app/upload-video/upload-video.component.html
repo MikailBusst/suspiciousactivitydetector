@@ -22,7 +22,17 @@
     <p style="margin-top: 0px">{{ activity_array[index] }}</p>
   </div>
 
-  <!--<button>Download Activity</button>-->
+  <div class="report_button download_report_button">
+    <button>Download Activity</button>
+  </div>
+
+  <div class="report_button_error download_report_button_denied">
+    <p style="margin-left: 3%; margin-top: 20px;">Please sign in to save this report.</p>
+  </div>
+</div>
+
+<div class="report_button download_report_button">
+  <button>Download Activity</button>
 </div>
 
 <router-outlet></router-outlet>

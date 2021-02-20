@@ -17,6 +17,8 @@ export class UploadVideoComponent implements OnInit {
   frame_array = []
   activity_array = []
   num_activities = 0
+  file_name
+  report_id
 
 
   constructor(public dialog: MatDialog, private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
@@ -71,6 +73,8 @@ export class UploadVideoComponent implements OnInit {
 
           $(".videoinfo").removeClass("videoinfo-hidden")
           $(".videoinfo").addClass("videoinfo-show")
+
+          this.file_name = file.name
 
           //$(".activitylist").removeClass("activitylist-hidden")
           //$(".activitylist").addClass("activitylist-show")
@@ -160,6 +164,24 @@ export class UploadVideoComponent implements OnInit {
 
     $(".activitylist").removeClass("activitylist-hidden")
     $(".activitylist").addClass("activitylist-show")
+
+    if(this.UserID != 0 && this.UserID != null) {
+      this.AddReport()
+      $(".report_button_error").removeClass("download_report_button_denied")
+      $(".report_button_error").addClass("download_report_button_denied_hidden")
+    }
+  }
+
+  AddReport() {
+    this.databaseService.AddActivityReport(this.file_name, this.UserID).subscribe(
+      res=>{
+        //console.log(res)
+        this.report_id = res
+      },
+      err=>{
+        console.log("Connection failed!")
+      }
+    )
   }
 
 }
