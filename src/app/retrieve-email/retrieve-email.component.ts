@@ -37,7 +37,7 @@ export class RetrieveEmailComponent implements OnInit {
               this.displayEmailError(res)
             }
             else {
-              window.location.replace("/emailsent")
+              window.location.replace("/suspiciousactivitydetector/emailsent")
             }
           },
           err=>{

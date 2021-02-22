@@ -11,8 +11,8 @@
 </div>
 
 <div class="videoinfo-hidden videoinfo">
-  <p id="videoname" style="margin-top: 0px;">Test</p>
-  <p id="videosize" class="sublist">Test</p>
+  <p id="videoname" style="margin-top: 0px;"></p>
+  <p id="videosize" class="sublist"></p>
   <div class="loader loader-show"></div>
 </div>
 
@@ -23,16 +23,12 @@
   </div>
 
   <div class="report_button download_report_button">
-    <button>Download Activity</button>
+    <button (click)="GenerateActivityReport()">Download Activity</button>
   </div>
 
   <div class="report_button_error download_report_button_denied">
     <p style="margin-left: 3%; margin-top: 20px;">Please sign in to save this report.</p>
   </div>
-</div>
-
-<div class="report_button download_report_button">
-  <button>Download Activity</button>
 </div>
 
 <router-outlet></router-outlet>

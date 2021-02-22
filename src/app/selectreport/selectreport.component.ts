@@ -11,6 +11,7 @@ export class SelectreportComponent implements OnInit {
   UserID
   Report_Time = []
   Report_Video = []
+  Report_ID = []
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -32,8 +33,9 @@ export class SelectreportComponent implements OnInit {
     var original_time = []
 
     for(var i = 0; i < res.length; i++) {
-      original_time.push(res[i][0])
-      this.Report_Video.push(res[i][1])
+      this.Report_ID.push(res[i][0])
+      original_time.push(res[i][1])
+      this.Report_Video.push(res[i][2])
     }
 
     this.ExtractDate(original_time)

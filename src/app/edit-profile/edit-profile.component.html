@@ -1,0 +1,47 @@
+<app-menu></app-menu>
+
+<h1>Edit Profile</h1>
+
+<form #editNameForm="ngForm" (ngSubmit)="ValidateName(editNameForm.value)">
+    <p>First Name <br>
+        <input name="FirstName" type="text" style="min-width: 200px" value="{{ first_name }}" placeholder="First Name" ngModel><br>
+        <span class="errortext" id="first_name"></span></p>
+    
+        <p>Last Name <br>
+        <input name="LastName" type="text" style="min-width: 200px" value="{{ last_name }}" placeholder="Last Name" ngModel><br>
+        <span class="errortext" id="last_name"></span></p>
+
+        <input type="submit" value="Save Changes">
+</form>
+
+<hr style="width: 95%;">
+
+<form #editEmailForm="ngForm" (ngSubmit)="ValidateEmail(editEmailForm.value)">
+    <h2>Edit Email</h2>
+
+    <p>Email Address <br>
+        <input name="Email" type="email" style="min-width: 300px" value="{{ email }}" placeholder="Email" ngModel><br>
+        <span class="errortext" id="email"></span></p>
+
+    <input type="submit" value="Save Changes">
+</form>
+
+<hr style="width: 95%;">
+
+<form #editPasswordForm="ngForm" (ngSubmit)="ValidateCurrentPassword(editPasswordForm.value)">
+    <h2>Edit Password</h2>
+
+    <p>Current Password <br>
+        <input name="CurrentPassword" type="password" style="min-width: 300px;" placeholder="Password" ngModel><br>
+        <span class="errortext" id="current_password"></span></p>
+
+    <p>New Password <br>
+        <input name="NewPassword" type="password" style="min-width: 300px;" placeholder="Password" ngModel><br>
+        <span class="errortext" id="new_password"></span></p>
+    
+    <p>Confirm Password <br>
+    <input name="ConfirmPassword" type="password" style="min-width: 300px;" placeholder="Confirm Password" ngModel><br>
+    <span class="errortext" id="confirm_password"></span></p>
+
+    <input type="submit" value="Save Changes" style="margin-bottom: 50px;">
+</form>

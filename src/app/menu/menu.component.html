@@ -9,8 +9,13 @@
           <li class="nav-item">
               <a class="nav-link" id="student_table" routerLink="">Upload Video</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="student_table" routerLink="/admin_dashboard" *ngIf="AdminStatus">Admin Dashboard</a>
+          <li class="nav-item dropdown" *ngIf="AdminStatus">
+            <a class="nav-link dropdown-toggle" style="outline: none;" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin Dashboard
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" routerLink="/generate_system_report">Generate System Report</a>
+            </div>
           </li>
           <li class="nav-item" *ngIf="UserID != 0 && UserID != null">
             <a class="nav-link" id="student_table" routerLink="/selectreport">Activity Reports</a>
@@ -23,7 +28,7 @@
             <span id="name"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" routerLink="/edit_profile">Edit Profile</a>
               <a class="dropdown-item" (click)="LogOut()" href="#">Log Out</a>
             </div>
           </li>

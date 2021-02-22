@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DatabaseService } from '../database.service';
-import { ActivityDetectorService } from '../activity-detector.service';  
+import { ActivityDetectorService } from '../activity-detector.service';
+import jsPDF from 'jspdf';  
 
 @Component({
   selector: 'app-upload-video',
@@ -19,6 +20,8 @@ export class UploadVideoComponent implements OnInit {
   num_activities = 0
   file_name
   report_id
+  filename_display
+  filesize_display
 
 
   constructor(public dialog: MatDialog, private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
@@ -93,17 +96,17 @@ export class UploadVideoComponent implements OnInit {
 
           //console.log(file.name.length)
 
-          var filename_display = ''
-
           if(file.name.length > 13) {
-            filename_display = file.name.substring(0,9) + '...' + file_extension
+            this.filename_display = file.name.substring(0,9) + '...' + file_extension
           }
           else {
-            filename_display = file.name
+            this.filename_display = file.name
           }
 
-          document.getElementById("videoname").innerHTML = filename_display
-          document.getElementById("videosize").innerHTML = rounded_size.toString() + " " + filesize_unit
+          this.filesize_display = rounded_size.toString() + " " + filesize_unit
+
+          document.getElementById("videoname").innerHTML = this.filename_display
+          document.getElementById("videosize").innerHTML = this.filesize_display
 
           var reader = new FileReader()
           reader.readAsDataURL(file)
@@ -177,11 +180,95 @@ export class UploadVideoComponent implements OnInit {
       res=>{
         //console.log(res)
         this.report_id = res
+        this.AddLog()
       },
       err=>{
         console.log("Connection failed!")
       }
     )
+  }
+
+  AddLog() {
+    var log_array = []
+
+    for(var i = 0; i < this.frame_array.length; i++) {
+      log_array.push(this.frame_array[i] + " " + this.activity_array[i])
+    }
+
+    this.databaseService.AddActivityLog(this.report_id, JSON.stringify(log_array)).subscribe(
+      res=>{
+        console.log(res)
+      },
+      err=>{
+        console.log("Connection failed!")
+      }
+    )    
+  }
+
+  GenerateActivityReport() {
+    var pdf = new jsPDF()
+    var j = 1
+    var i = 0
+    var y_position = 100
+    var first_terminator
+
+    if(this.activity_array.length > 6) {
+      first_terminator = 6
+    }
+    else {
+      first_terminator = this.activity_array.length
+    }
+
+    //pdf.setFontType('normal')
+
+    pdf.setFontSize(30)
+    pdf.setFont('Helvetica', 'bold')
+    pdf.text("Suspicious Activity Detector", 15, 40)
+
+    pdf.setFontSize(20)
+    pdf.setFont('Helvetica', 'normal')
+    pdf.text("Video:", 15, 60)
+    pdf.setFontSize(25)
+    pdf.text(this.filename_display, 15, 75)
+    pdf.setFontSize(15)
+    pdf.text(this.filesize_display, 15, 85)
+
+    for(i = 0; i < first_terminator; i++) {
+      pdf.line(15, y_position, 195, y_position)
+      y_position = y_position + 10
+      
+      pdf.text(this.frame_array[i].toString(), 15, y_position)
+      y_position = y_position + 10
+      pdf.setFontSize(20)
+      pdf.text(this.activity_array[i], 15, y_position)
+      y_position = y_position + 10
+    }
+
+    if(first_terminator == 6) {
+      pdf.addPage()
+      y_position = 30
+      
+      for(i = 6; i < this.activity_array.length; i++) {
+        if(j >= 8) {
+          j = 0
+          pdf.addPage()
+          y_position = 30
+        }
+        
+        pdf.line(15, y_position, 195, y_position)
+        y_position = y_position + 10
+        pdf.setFontSize(15)
+        pdf.text(this.frame_array[i].toString(), 15, y_position)
+        y_position = y_position + 10
+        pdf.setFontSize(20)
+        pdf.text(this.activity_array[i], 15, y_position)
+        y_position = y_position + 10
+  
+        j = j + 1
+      }
+    }
+
+    pdf.save(this.file_name.split('.').slice(0, -1).join('') + ".pdf")
   }
 
 }

@@ -23,6 +23,9 @@ import { UserIdComponent } from './user-id/user-id.component';
 import { ActivityDetectorService } from './activity-detector.service';
 import { EmailsentComponent } from './emailsent/emailsent.component';
 import { SelectreportComponent } from './selectreport/selectreport.component';
+import { ActivityreportComponent } from './activityreport/activityreport.component';
+import { GenerateSystemReportComponent } from './generate-system-report/generate-system-report.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { SelectreportComponent } from './selectreport/selectreport.component';
     EmailExistsDialogComponent,
     UserIdComponent,
     EmailsentComponent,
-    SelectreportComponent
+    SelectreportComponent,
+    ActivityreportComponent,
+    GenerateSystemReportComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +57,20 @@ import { SelectreportComponent } from './selectreport/selectreport.component';
     HttpClientModule,
     RouterModule.forRoot([
       {
+        path: 'activityreport',
+        component: ActivityreportComponent
+      },
+      {
         path: 'admin_dashboard',
         component: AdminDashboardComponent
+      },
+      {
+        path: 'edit_profile',
+        component: EditProfileComponent
+      },
+      {
+        path: 'generate_system_report',
+        component: GenerateSystemReportComponent
       },
       {
         path: 'reset_password',

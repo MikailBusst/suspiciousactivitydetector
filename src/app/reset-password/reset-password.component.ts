@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { DatabaseService } from '../database.service';
@@ -113,7 +112,7 @@ export class ResetPasswordComponent implements OnInit {
       this.databaseService.UpdatePassword(data, this.user_id).subscribe(
         res=>{
           this.DeleteCode()
-          window.location.replace("/signin")
+          window.location.replace("/suspiciousactivitydetector/signin")
         },
         err=>{
           console.log("Connection failed")

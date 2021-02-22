@@ -62,6 +62,6 @@ export class MenuComponent implements OnInit {
   LogOut(): void {
     localStorage.setItem("id", "0")
 
-    window.location.href = "/"
+    window.location.href = "/suspiciousactivitydetector"
   }
 }

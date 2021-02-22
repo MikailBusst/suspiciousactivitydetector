@@ -105,4 +105,83 @@ export class DatabaseService {
 
     return this.http.post<any>(this.MasterLink + 'get_activity_report.php', formData)
   }
+
+  AddActivityLog(report_id, log_array): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("report_id", report_id)
+    formData.append("log_array", log_array)
+
+    return this.http.post<any>(this.MasterLink + 'add_activity_log.php', formData)
+  }
+
+  GetActivityLogs(report_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("report_id", report_id)
+
+    return this.http.post<any>(this.MasterLink + 'get_activity_logs.php', formData)
+  }
+
+  GetActivityReportName(report_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("report_id", report_id)
+
+    return this.http.post<any>(this.MasterLink + 'get_specific_activity_report.php', formData)
+  }
+
+  GetServiceStats(month, year): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("month", month)
+    formData.append("year", year)
+
+    return this.http.post<any>(this.MasterLink + 'get_stats.php', formData)
+  }
+
+  GetProfileInfo(user_id): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+
+    return this.http.post<any>(this.MasterLink + 'get_profile_info.php', formData)
+  }
+
+  ChangeNames(user_id, firstname, lastname): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+    formData.append("firstname", firstname)
+    formData.append("lastname", lastname)
+
+    return this.http.post<any>(this.MasterLink + 'change_name.php', formData)
+  }
+
+  ChangeEmail(user_id, email): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+    formData.append("email", email)
+
+    return this.http.post<any>(this.MasterLink + 'change_email.php', formData)
+  }
+
+  VerifyPassword(user_id, password): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+    formData.append("password", password)
+
+    return this.http.post<any>(this.MasterLink + 'verify_password.php', formData)
+  }
+
+  ChangePassword(user_id, password): Observable<any> {
+    const formData: FormData = new FormData()
+
+    formData.append("user_id", user_id)
+    formData.append("password", password)
+
+    return this.http.post<any>(this.MasterLink + 'update_password.php', formData)
+  }
 }

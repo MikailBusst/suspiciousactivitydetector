@@ -13,7 +13,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.UserID != "0" && this.UserID != null) {
-      window.location.href = "/"
+      window.location.href = "/suspiciousactivitydetector"
     }
   }
 
@@ -84,7 +84,7 @@ export class SigninComponent implements OnInit {
 
             console.log(localStorage.getItem("id"))
 
-            window.location.href = "/"
+            window.location.href = "/suspiciousactivitydetector"
           }
         },
         err=>{

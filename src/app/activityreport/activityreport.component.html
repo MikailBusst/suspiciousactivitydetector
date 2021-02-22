@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+
+<h1>Activity Report</h1>
+
+<div class="report report-show">
+    <p>Video name: {{ video_name }}</p>
+
+    <div class="activitylist activitylist-show">
+        <div class="activitylistitem" *ngFor="let a of frame_array; let index = index">
+            <p style="margin-bottom: 10px" class="sublist">{{ frame_array[index] }}</p>
+            <p style="margin-top: 0px">{{ activity_array[index] }}</p>
+        </div>
+      
+        <div class="report_button download_report_button">
+          <button (click)="GenerateActivityReport()">Download Activity</button>
+        </div>
+    </div>
+</div>
+
+<div class="report-error report-error-hidden">
+    <p>Cannot display activity report.</p>
+</div>
