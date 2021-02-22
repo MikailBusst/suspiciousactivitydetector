@@ -5,15 +5,12 @@
 <form action="">
     <p>Select year and month</p>
     <select name="year" id="custom-dropdown" (change)="changeMonth($event.target.value)">
-        <option value="2020">2020</option>
         <option value="2021" selected>2021</option>
     </select>
    
     <select name="month" id="custom-dropdown" (change)="GetMonth($event.target.value)">
         <option value="0" selected>Select Month</option>
-        <option value="12" *ngIf="selected_2020">December</option>
-        <option value="01" *ngIf="selected_2021">January</option>
-        <option value="02" *ngIf="selected_2021">February</option>
+        <option value="02">February</option>
     </select>
 
     <br><br>

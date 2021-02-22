@@ -8,9 +8,7 @@ import jsPDF from 'jspdf';
   styleUrls: ['./generate-system-report.component.sass']
 })
 export class GenerateSystemReportComponent implements OnInit {
-
-  selected_2020
-  selected_2021 = true
+  
   year
   month = "0"
   new_users
@@ -304,19 +302,6 @@ export class GenerateSystemReportComponent implements OnInit {
 
   changeMonth(year) {
     this.year = year
-
-    switch(year) {
-      case "2020": {
-        this.selected_2020 = true
-        this.selected_2021 = false
-        break
-      }
-      case "2021": {
-        this.selected_2020 = false
-        this.selected_2021 = true
-        break
-      }
-    }
   }
 
   GetMonth(month) {
