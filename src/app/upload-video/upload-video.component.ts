@@ -17,12 +17,13 @@ export class UploadVideoComponent implements OnInit {
   activity_JSON = null
   frame_array = []
   activity_array = []
-  num_activities = 0
   file_name
   report_id
   filename_display
   filesize_display
-
+  total_activities = 0
+  fighting_percentage
+  notfighting_percentage
 
   constructor(public dialog: MatDialog, private databaseService:DatabaseService, private ads:ActivityDetectorService) { }
 
@@ -150,13 +151,29 @@ export class UploadVideoComponent implements OnInit {
   }
 
   getActivity(activity_JSON) {
+    var num_fighting = 0
+    var num_notfighting = 0
+
     for(var i = 0; i < Object.keys(activity_JSON).length; i++) {
-      //console.log(activity_JSON)
       var activity = Object.keys(activity_JSON).map((key) => [Number(key), activity_JSON[key]])
 
       if(activity[i][1] == "") {
         continue
       }
+      else if(activity[i][1] == "Fighting") {
+        this.total_activities = this.total_activities + 1
+        num_fighting = num_fighting + 1
+      }
+      else if(activity[i][1] == "Not Fighting") {
+        this.total_activities = this.total_activities + 1
+        num_notfighting = num_notfighting + 1
+      }
+      else {
+        this.total_activities = this.total_activities + 1
+      }
+
+      this.fighting_percentage = Math.round(num_fighting / this.total_activities * 100)
+      this.notfighting_percentage = Math.round(num_notfighting / this.total_activities * 100)
 
       this.frame_array.push(activity[i][0])
       this.activity_array.push(activity[i][1])
@@ -164,6 +181,9 @@ export class UploadVideoComponent implements OnInit {
 
     $(".loader").removeClass("loader-show")
     $(".loader").addClass("loader-hidden")
+
+    $(".percentages-section").removeClass("percentages-hidden")
+    $(".percentages-section").addClass("percentages")
 
     $(".activitylist").removeClass("activitylist-hidden")
     $(".activitylist").addClass("activitylist-show")
@@ -209,11 +229,11 @@ export class UploadVideoComponent implements OnInit {
     var pdf = new jsPDF()
     var j = 1
     var i = 0
-    var y_position = 100
+    var y_position = 140
     var first_terminator
 
-    if(this.activity_array.length > 6) {
-      first_terminator = 6
+    if(this.activity_array.length > 4) {
+      first_terminator = 4
     }
     else {
       first_terminator = this.activity_array.length
@@ -233,10 +253,54 @@ export class UploadVideoComponent implements OnInit {
     pdf.setFontSize(15)
     pdf.text(this.filesize_display, 15, 85)
 
+    pdf.setFontSize(50)
+    pdf.setFont('Helvetica', 'bold')
+
+    if(this.fighting_percentage == 100) {
+      pdf.text("100%", 40, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Fighting", 51, 115)
+    }
+    else if (this.fighting_percentage < 100 && this.fighting_percentage >= 10) {
+      pdf.text(this.fighting_percentage + "%", 45, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Fighting", 52, 115)
+    }
+    else {
+      pdf.text(this.fighting_percentage + "%", 50, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Fighting", 54, 115)
+    }
+
+    pdf.setFontSize(50)
+    pdf.setFont('Helvetica', 'bold')
+
+    if(this.notfighting_percentage == 100) {
+      pdf.text("100%", 120, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Not Fighting", 128, 115)
+    }
+    else if (this.notfighting_percentage < 100 && this.notfighting_percentage >= 10) {
+      pdf.text(this.notfighting_percentage + "%", 125, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Not Fighting", 129, 115)
+    }
+    else {
+      pdf.text(this.notfighting_percentage + "%", 130, 105)
+      pdf.setFontSize(15)
+      pdf.setFont('Helvetica', 'normal')
+      pdf.text("Not Fighting", 129, 115)
+    }
+
     for(i = 0; i < first_terminator; i++) {
       pdf.line(15, y_position, 195, y_position)
       y_position = y_position + 10
-      
+      pdf.setFontSize(15)
       pdf.text(this.frame_array[i].toString(), 15, y_position)
       y_position = y_position + 10
       pdf.setFontSize(20)
@@ -244,12 +308,12 @@ export class UploadVideoComponent implements OnInit {
       y_position = y_position + 10
     }
 
-    if(first_terminator == 6) {
+    if(first_terminator == 4) {
       pdf.addPage()
       y_position = 30
       
-      for(i = 6; i < this.activity_array.length; i++) {
-        if(j >= 8) {
+      for(i = 4; i < this.activity_array.length; i++) {
+        if(j >= 9) {
           j = 0
           pdf.addPage()
           y_position = 30

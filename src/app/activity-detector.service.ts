@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ActivityDetectorService {
 
   //MasterLink = 'http://127.0.0.1:5000'
-  MasterLink = 'https://326d8a1d529c.ngrok.io'
+  MasterLink = 'https://b61dc8b950aa.ngrok.io'
 
   constructor(private http:HttpClient) { }
 

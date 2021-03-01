@@ -16,6 +16,18 @@
   <div class="loader loader-show"></div>
 </div>
 
+<div class="percentages-section percentages-hidden">
+  <div class="fighting-percentage">
+      <p style="text-align: center; font-size: 35pt; font-weight: bold;">{{ fighting_percentage }}%</p><br>
+      <p style="text-align: center;">Fighting</p>
+  </div>
+
+  <div class="notfighting-percentage">
+      <p style="text-align: center; font-size: 35pt; font-weight: bold;">{{ notfighting_percentage }}%</p><br>
+      <p style="text-align: center;">Not Fighting</p>
+  </div>
+</div>
+
 <div class="activitylist activitylist-hidden">
   <div class="activitylistitem" *ngFor="let a of frame_array; let index = index">
     <p style="margin-bottom: 10px" class="sublist">{{ frame_array[index] }}</p>

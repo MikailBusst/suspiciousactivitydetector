@@ -113,6 +113,7 @@ export class ResetPasswordComponent implements OnInit {
         res=>{
           this.DeleteCode()
           window.location.replace("/suspiciousactivitydetector/signin")
+          //window.location.replace("/signin")
         },
         err=>{
           console.log("Connection failed")
