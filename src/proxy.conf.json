@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://b61dc8b950aa.ngrok.io",
+      "target": "https://966fa7a1fd12.ngrok.io",
       "secure": false,
       "timeout": 720000
     }
